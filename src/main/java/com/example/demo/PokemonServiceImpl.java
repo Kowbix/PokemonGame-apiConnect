@@ -4,6 +4,7 @@ import com.example.demo.model.PokemonObject;
 import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PokemonServiceImpl {
@@ -24,12 +25,19 @@ public class PokemonServiceImpl {
         }
     }
 
+    public void setPokemon(String id){
+        PokemonObject pokemon = pokemonObjectList.stream().filter(el -> el.getId().equals(id)).findFirst().get();
+
+        Collections.swap(pokemonObjectList, 0, pokemonObjectList.indexOf(pokemon));
+
+    }
+
     public void updatePlayerPokemon(int id, PokemonObject pokemonObject){
         pokemonObjectList.set(id, pokemonObject);
     }
 
-    public void changePlayerPokemon(String idPokemon, PokemonObject newPokemon) {
-        PokemonObject pokemon = pokemonObjectList.stream().filter(el -> el.getId().equals(idPokemon)).findFirst().get();
+    public void changePlayerPokemon(String id, PokemonObject newPokemon) {
+        PokemonObject pokemon = pokemonObjectList.stream().filter(el -> el.getId().equals(id)).findFirst().get();
         int index = pokemonObjectList.indexOf(pokemon);
         pokemonObjectList.set(index, newPokemon);
     }

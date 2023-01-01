@@ -20,28 +20,31 @@ public class Fighting {
         rand = new Random();
     }
 
+
     public PokemonObject fightPlayerPokemon() {
-        int dmgHp = pokemonObject.getHp() - rand.nextInt(1, pokemonComputerObject.getIngDmg());
+        int dmg = rand.nextInt(1, pokemonComputerObject.getIngDmg());
+        int dmgHp = pokemonObject.getHp() - dmg;
         if(dmgHp < 0){
             pokemonObject.setHp(0);
         } else {
             pokemonObject.setHp(dmgHp);
         }
 
-        setPlayerPoint(getPlayerPoint() + dmgHp);
+        setComputerPoint(dmg);
 
         return pokemonObject;
     }
 
     public PokemonObject fightComputerPokemon() {
-        int dmgHp = pokemonComputerObject.getHp() - rand.nextInt(1, pokemonObject.getIngDmg());
+        int dmg = rand.nextInt(1, pokemonObject.getIngDmg());
+        int dmgHp = pokemonComputerObject.getHp() - dmg;
         if(dmgHp < 0 ){
             pokemonComputerObject.setHp(0);
         } else {
             pokemonComputerObject.setHp(dmgHp);
         }
 
-        setComputerPoint(getComputerPoint() + dmgHp);
+        setPlayerPoint(dmg);
 
         return pokemonComputerObject;
     }

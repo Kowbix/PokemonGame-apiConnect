@@ -17,7 +17,9 @@
 </form>
 
 <div style=" text-align: left; border: 3px; border-style: dotted; border-color: rgb(255, 3, 3); height: 550px; padding-top:10px; float: left; margin-right: 50%"  >
-    <h1 style="padding-bottom: 20px; max-width: 1500px; padding-left: 20px"><u>You</u></h1>
+
+    <h1 style="padding-bottom: 20px; max-width: 1500px; padding-left: 20px"><u>You: <td th:text="${playerPoint}" style="width: 25%;"></td></u></h1>
+
 
     <div th:each="pokemon:${pokemonObject}" >
         <div style="width: 100%; text-align: center;">
@@ -35,10 +37,10 @@
             </div>
         </div>
     </div>
-<!--    <div th:each="player:${game}">-->
-<!--        <h3>Point</h3>-->
-<!--        <h3><td th:text="${player.playerPoint}" style="width: 25%;"></td></h3>-->
-<!--    </div>-->
+    <div th:each="player:${game}">
+        <h3>Point</h3>
+        <h3><td th:text="${player.playerPoint}" style="width: 25%;"></td></h3>
+    </div>
 
     <div th:each="player:${game}">
         <h3>Points: </h3>
@@ -47,7 +49,7 @@
 </div>
 
 <div style=" text-align: left; border: 3px; border-style: dotted; border-color: #03ff18; height: 550px; padding-top:10px; float: left;" >
-    <h1 style="padding-bottom: 20px; max-width: 1500px; padding-left: 20px"><u>Computer</u></h1>
+    <h1 style="padding-bottom: 20px; max-width: 1500px; padding-left: 20px"><u>Computer: <td th:text="${computerPoint}" style="width: 25%;"></u></h1>
 
     <div th:each="pokemonComputer:${pokemonComputerObject}" >
 
@@ -66,6 +68,34 @@
             </div>
         </div>
     </div>
+</div>
+
+<div style=" text-align: left; 570px; padding-bottom: 20px" >
+    <h1 style="padding-bottom: 20px; max-width: 1500px; padding-left: 20px"><u>Your Cards</u></h1>
+
+    <div th:each="pokemon:${playerCard}" >
+
+        <div style="width: 100%; text-align: center;">
+            <div style="float: left; ">
+                <div>
+                    <h3><td th:text="${pokemon.name}" style="width: 25%;"></td></h3>
+                </div>
+                <div>
+                    <h4>Hp: <td th:text="${pokemon.hp}" style="width: 25%;"></td></h4>
+                </div>
+                <div>
+                    <h4>DMG: <td th:text="${pokemon.ingDmg}" style="width: 25%;"></h4>
+                </div>
+                <td><img th:src="${pokemon.largeImg}" style="width: 300px; max-height: 400px; text-align: center; padding-left: 40px; padding-right: 40px;"></td>
+                <div>
+                    <a th:href="@{/setpokemon(id=${pokemon.id})}">
+                        <button type="submit" class="btn btn-primary" style="margin-bottom: 20px; margin-top: 10px;">Set</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 </body>
